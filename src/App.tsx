@@ -29,6 +29,8 @@ function App() {
 
     return (
         <>
+            <h1>Main</h1>
+
             <div className="card">
                 <div className="frame">
                     <div className="gallery">
