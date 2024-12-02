@@ -1,11 +1,14 @@
+body {
+  background-color: #8daa91;
+  color: #453643;
+  /*color: #28112b;*/
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background-color: #8daa91;
-  color: #453643;
-  /*color: #28112b;*/
+
   width: 100vw;
   height: 100vh;
 }
