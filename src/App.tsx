@@ -1,35 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import './App.css';
 
+type TProps = {
+    pictureId: number;
+    isActive: boolean;
+    isAway: boolean;
+    setActivePicture: React.Dispatch<React.SetStateAction<TProps['pictureId'] | null>>;
+}
+
+const Picture = React.memo<TProps>(({pictureId, isActive, isAway, setActivePicture}) => {
+    const toggleImage = React.useCallback(() => {
+        if (isActive) {
+            setActivePicture(null);
+            return;
+        }
+
+        setActivePicture(pictureId)
+    }, [isActive, setActivePicture, pictureId]);
+
+    return <div
+        className={`picture pic-${pictureId} ${isActive ? 'active': ''} ${isAway ? 'away': ''}`}
+        onClick={toggleImage}>
+        <img className="picture__image" src={`./assets/pic-${pictureId}.jpg`} alt="" />
+    </div>
+})
 function App() {
-  const [count, setCount] = useState(0)
+    const [activePicture, setActivePicture] = React.useState<TProps['pictureId'] | null>(null);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <>
+            <div className="card">
+                <div className="frame">
+                    <div className="gallery">
+                        {[1,2,3,4,5,6,7,8,9].map((picture) => {
+                            const isActive = activePicture === picture;
+                            const isAway = !!activePicture && !isActive;
+
+                            return <Picture key={picture} isActive={isActive} isAway={isAway} pictureId={picture} setActivePicture={setActivePicture}/>
+                        })}
+                    </div>
+                </div>
+            </div>
+        </>
+    )
 }
 
 export default App

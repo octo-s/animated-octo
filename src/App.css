@@ -40,3 +40,38 @@
 .read-the-docs {
   color: #888;
 }
+
+.frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -200px;
+  margin-left: -200px;
+  width: 400px;
+  height: 400px;
+  border-radius: 2px;
+  background-color: black;
+  box-shadow:
+          1px 2px 8px 0px rgba(0, 0, 0, 0.5),
+          0 0 1px #999 inset;
+  overflow: hidden;
+}
+
+
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 128px);
+  gap: 4px;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+}
+
+.picture {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  cursor: pointer;
+  background-color: #000;
+}
